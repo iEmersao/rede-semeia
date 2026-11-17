@@ -1,5 +1,8 @@
 node_modules/
 dist/
+database/*.sqlite
+database/*.sqlite-shm
+database/*.sqlite-wal
 .env
 .env.*
 !.env.example
@@ -13,3 +16,4 @@ yarn-debug.log*
 .pnpm-store/
 .tools/
 work-npm-*.tgz
+
