@@ -64,6 +64,8 @@ O Vite+ pode gerenciar a versão do Node.js usada pelo projeto. Para uma instala
 
 ## Executar
 
+No Windows, você também pode abrir `iniciar-rede-semeia.cmd` para iniciar a API e a interface e abrir o navegador automaticamente.
+
 Abra dois terminais na pasta do projeto. No primeiro, inicie a API:
 
 ```powershell
@@ -117,4 +119,5 @@ O build de produção fica em `dist/`, que é ignorada pelo Git.
 ## Dados e privacidade
 
 O arquivo `.env.example` contém apenas valores de exemplo; preencha suas credenciais no `.env` local. O `.env` é ignorado pelo Git. Os dados de `database/seed.sql` são fictícios e não devem ser substituídos por dados pessoais reais para esta demonstração.
+
 
