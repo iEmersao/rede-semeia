@@ -1,82 +1,118 @@
 # Rede Semeia
 
-Aplicação web de gestão de doadores e doações para uma ONG comunitária. Esta etapa do PIE II integra uma página feita com JavaScript e Vite+ a uma API Express e a um banco MySQL.
+Aplicação web para organizar doadores e doações de uma ONG comunitária. O projeto integra uma interface em JavaScript com Vite+, uma API Express e um banco MySQL. O nome público do repositório é `rede-semeia`.
 
 ## Requisitos
 
-- Node.js 22.18 ou superior
-- Vite+ (comando `vp`): https://viteplus.dev
-- MySQL 8.0 ou superior
+- Windows com PowerShell (os comandos de instalação abaixo são para Windows).
+- Vite+ 1.x (`vp`) e internet para instalar as dependências.
+- MySQL 8.0 ou superior.
 
-## Como preparar
+O Vite+ pode gerenciar a versão do Node.js usada pelo projeto. Para uma instalação global do `vp` e instruções para outros sistemas, consulte o [guia oficial de instalação do Vite+](https://www.viteplus.dev/guide/).
 
-1. Clone o repositório e abra a pasta do projeto.
-2. Instale as dependências com `vp install`.
-3. Inicie o MySQL e, no cliente `mysql` aberto na raiz do projeto, execute:
+## Preparar o ambiente
+
+1. Instale o Vite+ globalmente uma vez no PowerShell:
+
+   ```powershell
+   irm https://vite.plus/ps1 | iex
+   ```
+
+   Feche e reabra o terminal e confirme a instalação:
+
+   ```powershell
+   vp --version
+   ```
+
+2. Clone o repositório e entre na pasta:
+
+   ```powershell
+   git clone https://github.com/iEmersao/rede-semeia.git
+   cd rede-semeia
+   ```
+
+3. Instale as dependências:
+
+   ```powershell
+   vp install
+   ```
+
+4. Inicie o MySQL. Na raiz do projeto, abra o cliente MySQL com o mesmo usuário que será configurado em `.env`:
+
+   ```powershell
+   mysql -u root -p
+   ```
+
+   No prompt do MySQL, crie o banco e carregue dados fictícios:
 
    ```sql
    SOURCE database/schema.sql;
    SOURCE database/seed.sql;
    ```
 
-   O `schema.sql` recria o banco local `rede_semeia` do zero. O `seed.sql` carrega dados fictícios de demonstração; execute-o uma vez após o schema.
+   **Atenção:** `database/schema.sql` apaga e recria o banco local `rede_semeia`. Use-o somente no ambiente local de desenvolvimento. Execute `seed.sql` depois do schema e uma vez por carga inicial.
 
-4. Copie `.env.example` para `.env` e ajuste `DB_USER` e `DB_PASSWORD` conforme a configuração local do MySQL. No PowerShell:
+5. Em outro terminal, crie o arquivo local `.env` a partir do exemplo:
 
    ```powershell
    Copy-Item .env.example .env
    ```
 
-## Como executar
+   Ajuste `DB_USER` e `DB_PASSWORD` para as credenciais do seu MySQL. O `.env` não deve ser enviado ao GitHub.
 
-Abra dois terminais na pasta do projeto:
+## Executar
 
-```bash
+Abra dois terminais na pasta do projeto. No primeiro, inicie a API:
+
+```powershell
 vp run api
 ```
 
-```bash
+No segundo, inicie a interface:
+
+```powershell
 vp dev
 ```
 
-Acesse [http://localhost:5173](http://localhost:5173). O painel no topo mostra o estado da API, do banco e o horário da última verificação.
+Abra [http://localhost:5173](http://localhost:5173). O painel mostra `Status da API: ok`, a conexão com o banco e a data/hora da última verificação. Para as telas de doadores e doações carregarem os dados, o MySQL precisa estar iniciado e o schema e o seed precisam ter sido aplicados.
 
 ## Telas
 
-| Endereço         | O que permite fazer                          |
-| ---------------- | -------------------------------------------- |
-| `#/doadores`     | Listar, cadastrar, editar e excluir doadores |
-| `#/doacoes/nova` | Registrar uma doação com um ou mais itens    |
-| `#/doacoes`      | Consultar doações com doador, data e itens   |
+| Rota             | Função                                     |
+| ---------------- | ------------------------------------------ |
+| `#/doadores`     | Lista, cadastra, edita e exclui doadores.  |
+| `#/doacoes/nova` | Registra uma doação com um ou mais itens.  |
+| `#/doacoes`      | Consulta doações, doadores, datas e itens. |
 
-Esta entrega segue o escopo de frontend/API das Aulas 2 e 3. O login e JWT ficam para a etapa de autenticação indicada no material do curso.
+O login e a autenticação JWT não fazem parte desta etapa do projeto.
 
 ## API
 
-| Método e rota              | Resultado                                  |
-| -------------------------- | ------------------------------------------ |
-| `GET /api/health`          | Estado da API, conexão do banco e horário  |
-| `GET /api/doadores`        | Lista doadores                             |
-| `GET /api/doadores/:id`    | Consulta um doador                         |
-| `POST /api/doadores`       | Cadastra um doador                         |
-| `PUT /api/doadores/:id`    | Atualiza um doador                         |
-| `DELETE /api/doadores/:id` | Exclui um doador sem doações associadas    |
-| `GET /api/itens`            | Lista o catálogo de itens por categoria    |
-| `GET /api/doacoes`          | Lista doações com doador e itens           |
-| `POST /api/doacoes`        | Registra uma doação com itens em transação |
+| Método e rota              | Função                                                        |
+| -------------------------- | ------------------------------------------------------------- |
+| `GET /api/health`          | Informa o status da API, do banco e o horário da verificação. |
+| `GET /api/doadores`        | Lista doadores.                                               |
+| `GET /api/doadores/:id`    | Consulta um doador.                                           |
+| `POST /api/doadores`       | Cadastra um doador.                                           |
+| `PUT /api/doadores/:id`    | Atualiza um doador.                                           |
+| `DELETE /api/doadores/:id` | Exclui um doador sem doações associadas.                      |
+| `GET /api/itens`           | Lista itens por categoria.                                    |
+| `GET /api/doacoes`         | Lista doações com doador e itens.                             |
+| `POST /api/doacoes`        | Registra uma doação e seus itens em uma transação.            |
 
-Os exemplos para conferir as rotas estão em `api.http` (extensão REST Client do VS Code).
+Os exemplos de requisição estão em `api.http` e podem ser usados com a extensão REST Client do VS Code.
 
-## Verificação e build
+## Verificações
 
-```bash
+```powershell
 vp check --fix
 vp check
 vp build
 ```
 
-O build de produção vai para `dist/`, que não deve ser enviado ao Git.
+O build de produção fica em `dist/`, que é ignorada pelo Git.
 
 ## Dados e privacidade
 
-O `.env` guarda configurações locais e é ignorado pelo Git. Envie apenas `.env.example`, sem senhas. Os dados do `seed.sql` são fictícios.
+O arquivo `.env.example` contém apenas valores de exemplo; preencha suas credenciais no `.env` local. O `.env` é ignorado pelo Git. Os dados de `database/seed.sql` são fictícios e não devem ser substituídos por dados pessoais reais para esta demonstração.
+
