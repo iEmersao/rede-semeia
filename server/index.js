@@ -35,6 +35,11 @@ app.use((erro, _req, res, _next) => {
   if (erro.type === "entity.parse.failed") {
     return res.status(400).json({ erro: "JSON inválido no corpo da requisição" });
   }
+  if (["ECONNREFUSED", "ETIMEDOUT", "ECONNRESET", "ENOTFOUND"].includes(erro.code)) {
+    return res.status(503).json({
+      erro: "Banco de dados indisponível. Inicie o MySQL e tente novamente.",
+    });
+  }
   console.error(erro);
   return res.status(500).json({ erro: "Erro interno no servidor" });
 });
@@ -43,3 +48,4 @@ const port = Number(process.env.PORT) || 3000;
 app.listen(port, "127.0.0.1", () => {
   console.log(`API da Rede Semeia em http://127.0.0.1:${port}`);
 });
+

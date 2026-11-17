@@ -1,4 +1,3 @@
-import "./style.css";
 import { verificarSaude } from "./api.js";
 import { telaDoacoes, telaNovaDoacao } from "./pages/doacoes.js";
 import { telaDoadores } from "./pages/doadores.js";
@@ -30,7 +29,7 @@ async function navegar() {
 async function atualizarSaude() {
   try {
     const saude = await verificarSaude();
-    statusApi.textContent = `Status da API: ${saude.status}`;
+    statusApi.textContent = `API ${saude.status}`;
     statusBanco.textContent = `Banco: ${saude.banco}`;
     statusHora.textContent = `Verificado às ${formatarHorario.format(new Date(saude.hora))}`;
     statusHora.dateTime = saude.hora;
@@ -38,7 +37,7 @@ async function atualizarSaude() {
     statusBanco.classList.toggle("is-ok", saude.banco === "ok");
     statusBanco.classList.toggle("is-error", saude.banco !== "ok");
   } catch {
-    statusApi.textContent = "Status da API: fora do ar";
+    statusApi.textContent = "API fora do ar";
     statusBanco.textContent = "Banco: sem resposta";
     statusHora.textContent = `Verificado às ${formatarHorario.format(new Date())}`;
     statusApi.classList.add("is-error");
@@ -49,3 +48,4 @@ async function atualizarSaude() {
 window.addEventListener("hashchange", () => void navegar());
 void navegar();
 void atualizarSaude();
+

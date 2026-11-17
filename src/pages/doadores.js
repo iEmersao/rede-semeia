@@ -3,10 +3,14 @@ import { el, esconderMensagem, estado, mostrarMensagem } from "../ui.js";
 
 export async function telaDoadores(app) {
   app.innerHTML = `
-    <h1>Doadores</h1>
+    <div class="abertura-tela">
+      <div><p class="sobretitulo"><span></span>COMUNIDADE SEMEIA</p><h1>Quem faz a diferença</h1>
+      <p class="descricao-tela">Cada gesto começa com uma pessoa. Cuide da sua rede de doadores por aqui.</p></div>
+      <div class="abertura-ilustracao" aria-hidden="true"><span class="ilustracao-sol"></span><span class="ilustracao-folha folha-um"></span><span class="ilustracao-folha folha-dois"></span><span class="ilustracao-haste"></span><span class="ilustracao-chao"></span></div>
+    </div>
     <div class="layout-doadores">
       <form id="form-doador" class="cartao">
-        <h2 id="titulo-form">Novo doador</h2>
+        <div class="cartao-cabecalho"><span class="cartao-icone" aria-hidden="true">＋</span><div><p class="rotulo-cartao">FAÇA PARTE</p><h2 id="titulo-form">Novo doador</h2></div></div>
         <label>
           Nome
           <input name="nome" required maxlength="150" autocomplete="name" />
@@ -26,8 +30,9 @@ export async function telaDoadores(app) {
         <p id="msg-form" class="mensagem" role="status" hidden></p>
       </form>
 
-      <section>
-        <h2>Cadastrados</h2>
+      <section class="secao-lista" aria-labelledby="titulo-lista-doadores">
+        <div class="secao-cabecalho"><div><p class="rotulo-cartao">NOSSA REDE</p><h2 id="titulo-lista-doadores">Doadores cadastrados</h2></div><span class="selo-lista">Pessoas que semeiam</span></div>
+        <p id="resumo-doadores" class="resumo-lista" aria-live="polite"></p>
         <p id="msg-lista" class="mensagem" role="status" hidden></p>
         <ul id="lista-doadores" class="lista"></ul>
       </section>
@@ -40,6 +45,7 @@ export async function telaDoadores(app) {
   const botaoCancelar = app.querySelector("#cancelar");
   const msgForm = app.querySelector("#msg-form");
   const msgLista = app.querySelector("#msg-lista");
+  const resumo = app.querySelector("#resumo-doadores");
   const lista = app.querySelector("#lista-doadores");
   let editandoId = null; // null: cadastrando. Um número: editando esse doador.
 
@@ -48,9 +54,11 @@ export async function telaDoadores(app) {
     try {
       const doadores = await listarDoadores();
       if (doadores.length === 0) {
+        resumo.textContent = "";
         lista.replaceChildren(estado("Nenhum doador cadastrado ainda."));
         return;
       }
+      resumo.textContent = `${doadores.length} ${doadores.length === 1 ? "pessoa conectada" : "pessoas conectadas"} à Rede Semeia`;
       lista.replaceChildren(...doadores.map(cartaoDoador));
     } catch (erro) {
       lista.replaceChildren();
@@ -61,8 +69,9 @@ export async function telaDoadores(app) {
   function cartaoDoador(doador) {
     return el(
       "li",
-      { class: "cartao" },
-      el("strong", {}, doador.nome),
+      { class: "cartao cartao-doador" },
+      el("span", { class: "avatar-doador", "aria-hidden": "true" }, doador.nome.trim().charAt(0).toLocaleUpperCase("pt-BR")),
+      el("strong", { class: "nome-doador" }, doador.nome),
       el("span", { class: "detalhe" }, doador.email ?? "sem e-mail"),
       el("span", { class: "detalhe" }, doador.telefone ?? "sem telefone"),
       el(
@@ -144,3 +153,4 @@ export async function telaDoadores(app) {
 
   await carregar();
 }
+

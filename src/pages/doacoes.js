@@ -4,7 +4,8 @@ import { el, esconderMensagem, estado, formatarData, hoje, mostrarMensagem } fro
 // Tela: registrar doação
 export async function telaNovaDoacao(app) {
   app.innerHTML = `
-    <h1>Registrar doação</h1>
+    <div class="abertura-tela abertura-compacta"><div><p class="sobretitulo"><span></span>UM GESTO QUE TRANSFORMA</p><h1>Registrar doação</h1>
+    <p class="descricao-tela">Registre com carinho cada contribuição recebida pela Rede Semeia.</p></div><span class="abertura-simbolo" aria-hidden="true">✳</span></div>
     <form id="form-doacao" class="cartao formulario-doacao">
       <label>
         Doador
@@ -151,9 +152,9 @@ export async function telaNovaDoacao(app) {
 // Tela: listagem de doações
 export async function telaDoacoes(app) {
   app.innerHTML = `
-    <div class="titulo-tela">
-      <h1>Doações</h1>
-      <a class="botao" href="#/doacoes/nova">+ Registrar doação</a>
+    <div class="abertura-tela abertura-compacta titulo-tela">
+      <div><p class="sobretitulo"><span></span>IMPACTO EM MOVIMENTO</p><h1>Doações recebidas</h1><p class="descricao-tela">Acompanhe as contribuições que chegam para fortalecer nossa missão.</p></div>
+      <a class="botao" href="#/doacoes/nova"><span aria-hidden="true">＋</span> Registrar doação</a>
     </div>
     <p id="resumo" class="resumo"></p>
     <p id="msg" class="mensagem" role="status" hidden></p>
@@ -205,3 +206,4 @@ function cartaoDoacao(doacao) {
     doacao.observacao ? el("p", { class: "observacao" }, doacao.observacao) : null,
   );
 }
+
