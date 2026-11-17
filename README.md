@@ -2,6 +2,8 @@
 
 Aplicação web para organizar doadores e doações de uma ONG comunitária. O projeto integra uma interface em JavaScript com Vite+, uma API Express e um banco MySQL. O nome público do repositório é `rede-semeia`.
 
+O modelo de dados está documentado em [`database/MER.md`](database/MER.md) e implementado em `database/schema.sql`. O MER original do PIE I não foi fornecido junto com os materiais; confira o modelo documentado contra o seu antes de entregar, caso exista uma versão anterior.
+
 ## Requisitos
 
 - Windows com PowerShell (os comandos de instalação abaixo são para Windows).
