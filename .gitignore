@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+.DS_Store
+.vite/
+# Local package-manager cache and temporary tooling
+.pnpm-store/
+.tools/
+work-npm-*.tgz

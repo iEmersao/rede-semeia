@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f4ed" />
+    <meta name="description" content="Gestão de doadores e doações da Rede Semeia." />
+    <title>Rede Semeia · Doações que florescem</title>
+  </head>
+  <body>
+    <header class="topo">
+      <a class="marca" href="#/doadores" aria-label="Rede Semeia, início">
+        <span class="marca-simbolo" aria-hidden="true">s</span>
+        <span>rede<span class="marca-clara">semeia</span></span>
+      </a>
+      <nav aria-label="Navegação principal">
+        <a href="#/doadores">Doadores</a>
+        <a href="#/doacoes/nova">Registrar doação</a>
+        <a href="#/doacoes">Doações</a>
+      </nav>
+    </header>
+
+    <section class="sistema" aria-label="Saúde do sistema" role="status">
+      <span class="sistema-ponto" aria-hidden="true"></span>
+      <span id="status-api">Status da API: verificando...</span>
+      <span class="sistema-separador" aria-hidden="true">·</span>
+      <span id="status-banco">Banco: verificando...</span>
+      <time id="status-hora"></time>
+    </section>
+
+    <main id="app"></main>
+
+    <footer class="rodape">
+      <span>© 2026 Rede Semeia</span>
+      <span>Conectar, cuidar e florescer.</span>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
