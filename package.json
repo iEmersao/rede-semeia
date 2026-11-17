@@ -1,5 +1,5 @@
 {
-  "name": "suaong",
+  "name": "rede-semeia",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -35,3 +35,4 @@
   },
   "packageManager": "npm@12.2.1"
 }
+
