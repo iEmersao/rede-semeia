@@ -4,7 +4,7 @@ SemeiaViva é o sistema de gestão comunitária de doadores e doações da Rede 
 
 A versão atualizada está na branch `codex/rede-semeia-publish`; o comando abaixo já clona essa versão.
 
-O modelo de dados está documentado em [`database/MER.md`](database/MER.md), com esquemas em `database/schema.sqlite.sql` (SQLite local) e `database/schema.sql` (MySQL). O MER original do PIE I não foi fornecido junto com os materiais; confira o modelo documentado contra o seu antes de entregar, caso exista uma versão anterior.
+O modelo de dados está documentado em [`database/MER.md`](database/MER.md), com esquemas em `database/schema.sqlite.sql` (SQLite local) e `database/schema.sql` (MySQL).
 
 ## Requisitos
 
