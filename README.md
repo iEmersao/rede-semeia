@@ -2,6 +2,8 @@
 
 SemeiaViva é o sistema de gestão comunitária de doadores e doações da Rede Semeia. A aplicação integra interface JavaScript com Vite+, API Express e banco local SQLite por padrão. O repositório público mantém o endereço `rede-semeia`.
 
+A versão atualizada está na branch `codex/rede-semeia-publish`; o comando abaixo já clona essa versão.
+
 O modelo de dados está documentado em [`database/MER.md`](database/MER.md), com esquemas em `database/schema.sqlite.sql` (SQLite local) e `database/schema.sql` (MySQL). O MER original do PIE I não foi fornecido junto com os materiais; confira o modelo documentado contra o seu antes de entregar, caso exista uma versão anterior.
 
 ## Requisitos
@@ -29,7 +31,7 @@ O Vite+ pode gerenciar a versão do Node.js usada pelo projeto. Para uma instala
 2. Clone o repositório e entre na pasta:
 
    ```powershell
-   git clone https://github.com/iEmersao/rede-semeia.git
+   git clone --branch codex/rede-semeia-publish https://github.com/iEmersao/rede-semeia.git
    cd rede-semeia
    ```
 
