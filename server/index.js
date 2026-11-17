@@ -1,4 +1,6 @@
 import "dotenv/config";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import express from "express";
 import db from "./db.js";
 import doadores from "./routes/doadores.js";
@@ -18,7 +20,8 @@ app.get("/api/health", async (_req, res) => {
   res.json({
     status: "ok",
     banco,
-    app: "Rede Semeia",
+    driver: db.driver,
+    app: "SemeiaViva",
     hora: new Date().toISOString(),
   });
 });
@@ -44,8 +47,12 @@ app.use((erro, _req, res, _next) => {
   return res.status(500).json({ erro: "Erro interno no servidor" });
 });
 
-const port = Number(process.env.PORT) || 3000;
-app.listen(port, "127.0.0.1", () => {
-  console.log(`API da Rede Semeia em http://127.0.0.1:${port}`);
-});
+export default app;
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const port = Number(process.env.PORT) || 3000;
+  app.listen(port, "127.0.0.1", () => {
+    console.log(`API SemeiaViva em http://127.0.0.1:${port}`);
+  });
+}
 
