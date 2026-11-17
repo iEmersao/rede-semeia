@@ -1,0 +1,52 @@
+### Rede Semeia · verificações manuais da API
+### Com a API rodando (vp run api), use a extensão REST Client do VS Code.
+
+@api = http://localhost:3000/api
+
+### Saúde da API e do banco
+GET {{api}}/health
+
+### Listar doadores
+GET {{api}}/doadores
+
+### Consultar um doador
+GET {{api}}/doadores/1
+
+### Cadastrar doador
+POST {{api}}/doadores
+Content-Type: application/json
+
+{
+  "nome": "Beatriz Exemplo",
+  "email": "beatriz@example.org",
+  "telefone": "(11) 90000-0199"
+}
+
+### E-mail duplicado (espera 409)
+POST {{api}}/doadores
+Content-Type: application/json
+
+{
+  "nome": "Outro cadastro",
+  "email": "ana@example.org"
+}
+
+### Listar o catálogo de itens
+GET {{api}}/itens
+
+### Listar doações com doador e itens
+GET {{api}}/doacoes
+
+### Registrar doação com dois itens
+POST {{api}}/doacoes
+Content-Type: application/json
+
+{
+  "id_doador": 2,
+  "data_doacao": "2026-11-16",
+  "observacao": "Arrecadação comunitária",
+  "itens": [
+    { "id_item": 1, "quantidade": 4 },
+    { "id_item": 4, "quantidade": 6 }
+  ]
+}
