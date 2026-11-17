@@ -4,7 +4,7 @@
 
 | Campo               | Informação                              |
 | ------------------- | --------------------------------------- |
-| Seu nome completo   | [preencher antes de entregar]           |
+| Seu nome completo   | Preencher na cópia entregue à plataforma |
 | ONG/Empresa         | Rede Semeia                             |
 | Link do repositório | https://github.com/iEmersao/rede-semeia |
 
@@ -45,10 +45,10 @@ Abra http://localhost:5173. Não há usuário de demonstração nesta etapa; o l
 
 ## 3. O que funciona e o que ficou pendente
 
-| Funciona                                                                                                      | Pendente / próxima melhoria                                                                                                           |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `vp check` sem erros ou avisos e `vp build` concluído.                                                        | Iniciar o MySQL, aplicar schema e seed e validar as telas CRUD com o banco disponível.                                                |
-| Rota `GET /api/health` responde com status da API e data/hora; o frontend integra o endpoint pelo proxy Vite. | Comparar o schema com o MER oficial do PIE I, que não foi incluído nos materiais recebidos, e ajustar caso haja entidades diferentes. |
-| Implementação das telas de doadores e de consulta/registro de doações, com rotas Express e validações.        | Preencher o nome completo do estudante antes de entregar.                                                                             |
-| Repositório público, README com instruções e `.env` fora do Git.                                              | Login e proteção JWT, previstos para a etapa de autenticação do curso.                                                                |
+| Funciona                                                                                                                         | Pendente / próxima melhoria                                                                                                              |
+| -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `vp check` sem erros ou avisos e `vp build` concluído com Vite+ 1.4.0.                                                           | Conferir o MER reconstruído em `database/MER.md` com o MER do PIE I, caso exista uma versão anterior, e ajustar diferenças.             |
+| `database/schema.sql` executado duas vezes sem erro no MySQL 8.4.13; seed carregado com 4 doadores, 9 itens e 3 doações.          | Preencher o nome completo na cópia do relatório entregue à plataforma; não publicar dados pessoais no repositório público.              |
+| `GET /api/health` respondeu com API e banco `ok` e data/hora. Listagens, criação/edição de doador e doação com vários itens validadas. | Fazer a captura final do navegador em `http://localhost:5173` com o banco ativo para anexar à atividade, se a plataforma a exigir.       |
+| As telas de doadores, listagem e registro de doação carregaram os dados de demonstração no navegador. Repositório público, README e `.env` ignorado. | Login e proteção JWT ficam para a etapa de autenticação do curso (Aula 4).                                                               |
 
