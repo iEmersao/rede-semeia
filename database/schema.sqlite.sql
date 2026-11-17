@@ -37,4 +37,3 @@ CREATE TABLE IF NOT EXISTS doacao_item (
   quantidade INTEGER NOT NULL CHECK (quantidade > 0),
   PRIMARY KEY (id_doacao, id_item)
 );
-

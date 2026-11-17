@@ -55,4 +55,3 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     console.log(`API SemeiaViva em http://127.0.0.1:${port}`);
   });
 }
-

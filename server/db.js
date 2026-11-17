@@ -99,4 +99,3 @@ if (driver === "mysql") {
 }
 
 export default db;
-

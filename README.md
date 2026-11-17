@@ -119,4 +119,3 @@ O build de produção fica em `dist/`, que é ignorada pelo Git.
 ## Dados e privacidade
 
 O arquivo `.env.example` contém apenas valores de exemplo; preencha suas credenciais no `.env` local se usar MySQL. O `.env` e o banco SQLite local são ignorados pelo Git. Os registros de demonstração são fictícios e não devem ser substituídos por dados pessoais reais.
-
